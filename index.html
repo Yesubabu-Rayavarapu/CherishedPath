@@ -184,7 +184,7 @@
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
-        Your content will disappear in <span id="timer">1:00</span> minute!
+        You will be redirected to a new page in <span id="timer">1:00</span> minute(s)!
     </div>
 
     <!-- Full blackout overlay -->
@@ -281,6 +281,10 @@
             const seconds = timeLeft % 60;
             timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
+            if (timeLeft <= 5) { // Show the warning 5 seconds before the redirect
+                timedMessage.style.display = 'block';
+            }
+
             if (timeLeft <= 0) {
                 window.location.href = 'https://www.biblegateway.com/passage/?search=Genesis%2029%3A18-20&version=NIV'; // Redirect to Bible Gateway after timer ends
             } else {
@@ -289,8 +293,7 @@
             }
         }
 
-        // Start the timer and show the message
-        timedMessage.style.display = 'block';
+        // Start the timer
         updateTimer();
     </script>
 </body>
