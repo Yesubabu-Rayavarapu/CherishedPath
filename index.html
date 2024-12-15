@@ -171,32 +171,6 @@
         Your session has expired! Please refresh or log in again.
     </div>
 
-    <!-- Geolocation Script -->
-    <script>
-        fetch('https://ipinfo.io/json?token=d0dfd888f6b70a')
-            .then(response => response.json())
-            .then(data => {
-                const userCity = data.city.toLowerCase();
-                const allowedCities = ['bengaluru', 'rajahmundry', 'kovvur'];
-
-                const kovvurIPs = [
-                    '43.227.129.0', '43.227.129.245', '43.227.129.222', 
-                    '43.227.129.162', '43.227.129.157', '43.227.129.146', 
-                    '43.227.129.132', '43.227.129.87', '43.227.129.86'
-                ];
-
-                const userIP = data.ip;
-
-                if (!allowedCities.includes(userCity) && !kovvurIPs.includes(userIP)) {
-                    window.location.href = 'access-denied.html';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching location data:', error);
-                window.location.href = 'access-denied.html';
-            });
-    </script>
-
     <!-- Screenshot and Copy Prevention Script -->
     <script>
         // Prevent Print Screen and apply visual blur disruption
