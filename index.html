@@ -7,17 +7,23 @@
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css');
     
         body {
-            font-family: 'Lora', sans-serif;
+            font-family: 'Times New Roman', Times, serif;
             font-size: 17px;
             line-height: 1.5;
             background-color: #fff;
-            background-image: url('D:/Personal/Background image.jpeg'); /* Path to your background image */
+            background-image: url('Background image.jpeg');
             background-attachment: scroll;
-            background-size: cover;  /* Ensure the background covers the entire page */
+            background-size: cover;
+
+            /* Disable text selection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .box {
-            background: #EA1E63;  /* Updated card color to #EA1E63 */
+            background: #EA1E63;
             padding: 60px 60px;
             color: #fff;
             width: 50%;
@@ -25,7 +31,7 @@
             margin: 25vh auto;
             position: relative;
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-            border-radius: 20px;  /* Rounded corners for the box */
+            border-radius: 20px;
         }
 
         .box h3 {
@@ -35,7 +41,6 @@
             margin: 5px;
         }
 
-        /* Floral design for corners using images */
         .box .floral-corner {
             position: absolute;
             width: 40px;
@@ -44,52 +49,47 @@
             background-repeat: no-repeat;
         }
 
-        /* Top-left corner floral */
         .box .top-left {
             top: -20px;
             left: -20px;
-            background-image: url('https://www.flaticon.com/svg/static/icons/svg/3057/3057124.svg'); /* Floral image from Flaticon */
+            background-image: url('https://www.flaticon.com/svg/static/icons/svg/3057/3057124.svg');
         }
 
-        /* Top-right corner floral */
         .box .top-right {
             top: -20px;
             right: -20px;
-            background-image: url('https://www.flaticon.com/svg/static/icons/svg/3057/3057124.svg'); /* Same floral image for consistency */
+            background-image: url('https://www.flaticon.com/svg/static/icons/svg/3057/3057124.svg');
         }
 
-        /* Bottom-left corner floral */
         .box .bottom-left {
             bottom: -20px;
             left: -20px;
             background-image: url('https://www.flaticon.com/svg/static/icons/svg/3057/3057124.svg');
         }
 
-        /* Bottom-right corner floral */
         .box .bottom-right {
             bottom: -20px;
             right: -20px;
             background-image: url('https://www.flaticon.com/svg/static/icons/svg/3057/3057124.svg');
         }
 
-        /* Style for the ring image */
         .ring {
-            width: 100px;  /* Set width */
-            height: auto;  /* Maintain aspect ratio */
-            display: block; /* Ensure it's a block-level element */
-            margin: 0 auto; /* Center align */
-            background-image: url('D:/Personal/Rings image.jpeg'); /* Path to your rings image */
-            background-size: contain;  /* Make sure the background image fits the container */
-            background-repeat: no-repeat;  /* Avoid repeating the image */
-            background-position: center;  /* Center the background image */
-            border: 5px solid #ff69b4;  /* Add a border with pink color */
-            border-radius: 50%;  /* Make the border round to fit the ring image */
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5); /* Add a slight shadow for depth */
-            transition: transform 0.3s ease;  /* Add smooth transform transition */
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            background-image: url('Rings image.jpeg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 5px solid #ff69b4;
+            border-radius: 50%;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
         }
 
         .ring:hover {
-            transform: scale(1.1);  /* Slight zoom-in effect when hovering */
+            transform: scale(1.1);
         }
 
         .love {
@@ -102,22 +102,155 @@
             50% { transform: scale(1.3); }
             100% { transform: scale(1); }
         }
+
+        .rockwell {
+            font-family: 'Rockwell', serif;
+        }
+
+        .dubai-medium {
+            font-family: 'Dubai Medium', sans-serif;
+        }
+
+        /* Overlay to block screenshots */
+        .screenshot-blocker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Solid blackout screen */
+            z-index: 9999;
+            display: none;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            line-height: 100vh;
+        }
+
+        /* Blur the body when screenshot is attempted */
+        body.blurred {
+            filter: blur(10px);
+        }
+
+        /* Session expired message */
+        .session-expired {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="main">
         <div class="box">
-            <!-- Applying floral corner designs -->
             <div class="top-left floral-corner"></div>
             <div class="top-right floral-corner"></div>
             <div class="bottom-left floral-corner"></div>
             <div class="bottom-right floral-corner"></div>
-            <img src="D:/Personal/Rings image.jpeg" class="ring" alt="rings">
-            <h3>Hi <span class="love">🤍</span> Hello</h3>
-            <p>Determining what exactly defines a short story remains problematic.[3] A classic definition of a short story is that one should be able to read it in one sitting, a point most notably made in Edgar Allan Poe's essay "The Philosophy of Composition" (1846).[4] H. G. Wells described the purpose of the short story as "The jolly art, of making something very bright and moving; it may be horrible or pathetic or funny or profoundly illuminating, having only this essential, that it should take from fifteen to fifty minutes to read aloud."[5] According to William Faulkner, a short story is character-driven and a writer's job is to "...trot along behind him with a paper and pencil trying to keep up long enough to put down what he says and does."[6]
-
-                Some authors have argued that a short story must have a strict form. Somerset Maugham thought that the short story "must have a definite design, which includes a point of departure, a climax and a point of test; in other words, it must have a plot".[5] Hugh Walpole had a similar view: "A story should be a story; a record of things happening full of incidents, swift movements, unexpected development, leading through suspense to a climax and a satisfying denouement."[5]</p>
+            <img src="Rings image.jpeg" class="ring" alt="rings">
+            <h3>jdjdjdvvj<span class="love">🦢</span></h3>
         </div>
     </div>
+
+    <div class="screenshot-blocker" id="screenshot-blocker">
+        Screenshot blocked!
+    </div>
+
+    <!-- Session Expired Modal -->
+    <div id="session-expired" class="session-expired">
+        Your session has expired! Please refresh or log in again.
+    </div>
+
+    <!-- Geolocation Script -->
+    <script>
+        fetch('https://ipinfo.io/json?token=d0dfd888f6b70a')
+            .then(response => response.json())
+            .then(data => {
+                const userCity = data.city.toLowerCase();
+                const allowedCities = ['bengaluru', 'rajahmundry', 'kovvur'];
+
+                const kovvurIPs = [
+                    '43.227.129.0', '43.227.129.245', '43.227.129.222', 
+                    '43.227.129.162', '43.227.129.157', '43.227.129.146', 
+                    '43.227.129.132', '43.227.129.87', '43.227.129.86'
+                ];
+
+                const userIP = data.ip;
+
+                if (!allowedCities.includes(userCity) && !kovvurIPs.includes(userIP)) {
+                    window.location.href = 'access-denied.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching location data:', error);
+                window.location.href = 'access-denied.html';
+            });
+    </script>
+
+    <!-- Screenshot and Copy Prevention Script -->
+    <script>
+        // Prevent Print Screen and apply visual blur disruption
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'PrintScreen' || e.keyCode === 44) { // KeyCode for PrintScreen
+                e.preventDefault();
+                alert('Screenshots are not allowed.');
+                document.body.classList.add('blurred'); // Apply blur effect
+                
+                // Remove the blur effect after a second
+                setTimeout(function() {
+                    document.body.classList.remove('blurred');
+                }, 1000); // Blur for 1 second
+            }
+        });
+
+        // Disable right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('Right-click is disabled.');
+        });
+
+        // Disable copy (Ctrl+C, Cmd+C)
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey && e.key === 'c') || (e.metaKey && e.key === 'c')) {
+                e.preventDefault();
+                alert('Copying content is not allowed.');
+            }
+        });
+
+        // Disable text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+
+        // Detect screenshot tools (window blur)
+        let isBlurred = false;
+        window.addEventListener('blur', function() {
+            if (!isBlurred) {
+                document.getElementById('screenshot-blocker').style.display = 'block';
+                isBlurred = true;
+            }
+        });
+
+        window.addEventListener('focus', function() {
+            document.getElementById('screenshot-blocker').style.display = 'none';
+            isBlurred = false;
+        });
+
+        // Session Timer
+        setTimeout(function() {
+            // After 3 minutes, show session expired message and block interactions
+            document.getElementById('session-expired').style.display = 'flex';
+        }, 180000);  // 180000 ms = 3 minutes
+    </script>
 </body>
 </html>
