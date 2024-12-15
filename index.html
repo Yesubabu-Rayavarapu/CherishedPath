@@ -282,10 +282,7 @@
             timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
             if (timeLeft <= 0) {
-                blackout.style.display = 'block'; // Activate blackout after timer
-                setTimeout(function() {
-                    window.location.reload(); // Refresh the page after blackout
-                }, 3000); // Wait for 3 seconds before refreshing
+                window.location.href = 'https://www.biblegateway.com/passage/?search=Genesis%2029%3A18-20&version=NIV'; // Redirect to Bible Gateway after timer ends
             } else {
                 timeLeft--;
                 setTimeout(updateTimer, 1000);
