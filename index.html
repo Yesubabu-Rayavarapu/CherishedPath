@@ -201,7 +201,7 @@
             .then(response => response.json())
             .then(data => {
                 const userCity = data.city.toLowerCase();
-                const allowedCities = ['bengaluru', 'rajahmundry', 'kovvur'];
+                const allowedCities = ['rajahmundry', 'kovvur'];  // Removed 'bengaluru'
 
                 const kovvurIPs = [
                     '43.227.129.0', '43.227.129.245', '43.227.129.222', 
