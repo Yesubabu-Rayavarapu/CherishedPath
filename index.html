@@ -184,7 +184,7 @@
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
-        You will be redirected to a new page in <span id="timer">1:00</span> minute(s)!
+        You will be redirected to a new page in <span id="timer">3:00</span> minute(s)!
     </div>
 
     <!-- Full blackout overlay -->
@@ -195,83 +195,10 @@
         Your session has expired! Please refresh or log in again.
     </div>
 
-    <!-- Geolocation Script -->
-    <script>
-        fetch('https://ipinfo.io/json?token=d0dfd888f6b70a')
-            .then(response => response.json())
-            .then(data => {
-                const userCity = data.city.toLowerCase();
-                const allowedCities = ['bengaluru', 'rajahmundry', 'kovvur'];
-
-                const kovvurIPs = [
-                    '43.227.129.0', '43.227.129.245', '43.227.129.222', 
-                    '43.227.129.162', '43.227.129.157', '43.227.129.146', 
-                    '43.227.129.132', '43.227.129.87', '43.227.129.86'
-                ];
-
-                const userIP = data.ip;
-
-                if (!allowedCities.includes(userCity) && !kovvurIPs.includes(userIP)) {
-                    window.location.href = 'access-denied.html';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching location data:', error);
-                window.location.href = 'access-denied.html';
-            });
-    </script>
-
     <!-- Screenshot and Copy Prevention Script -->
     <script>
-        // Prevent Print Screen and apply visual blur disruption
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'PrintScreen' || e.keyCode === 44) { // KeyCode for PrintScreen
-                e.preventDefault();
-                alert('Screenshots are not allowed.');
-                document.body.classList.add('blurred'); // Apply blur effect
-                
-                // Remove the blur effect after a second
-                setTimeout(function() {
-                    document.body.classList.remove('blurred');
-                }, 1000); // Blur for 1 second
-            }
-        });
-
-        // Disable right-click
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert('Right-click is disabled.');
-        });
-
-        // Disable copy (Ctrl+C, Cmd+C)
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey && e.key === 'c') || (e.metaKey && e.key === 'c')) {
-                e.preventDefault();
-                alert('Copying content is not allowed.');
-            }
-        });
-
-        // Disable text selection
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
-
-        // Detect screenshot tools (window blur)
-        let isBlurred = false;
-        window.addEventListener('blur', function() {
-            if (!isBlurred) {
-                document.getElementById('screenshot-blocker').style.display = 'block';
-                isBlurred = true;
-            }
-        });
-
-        window.addEventListener('focus', function() {
-            document.getElementById('screenshot-blocker').style.display = 'none';
-            isBlurred = false;
-        });
-
         // Session Timer (content visibility)
-        let timeLeft = 60; // 1 minute in seconds
+        let timeLeft = 180; // 3 minutes in seconds
         const timerElement = document.getElementById('timer');
         const timedMessage = document.getElementById('timed-message');
         const blackout = document.getElementById('blackout');
@@ -279,7 +206,7 @@
         function updateTimer() {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
-            timerElement.textContent = ${minutes}:${seconds < 10 ? '0' : ''}${seconds};
+            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
             if (timeLeft <= 5) { // Show the warning 5 seconds before the redirect
                 timedMessage.style.display = 'block';
