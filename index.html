@@ -201,7 +201,7 @@
             .then(response => response.json())
             .then(data => {
                 const userCity = data.city.toLowerCase();
-                const allowedCities = ['rajahmundry', 'kovvur'];  // Removed 'bengaluru'
+                const allowedCities = ['bengaluru', 'rajahmundry', 'kovvur'];
 
                 const kovvurIPs = [
                     '43.227.129.0', '43.227.129.245', '43.227.129.222', 
@@ -279,7 +279,7 @@
         function updateTimer() {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
-            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            timerElement.textContent = ${minutes}:${seconds < 10 ? '0' : ''}${seconds};
 
             if (timeLeft <= 5) { // Show the warning 5 seconds before the redirect
                 timedMessage.style.display = 'block';
