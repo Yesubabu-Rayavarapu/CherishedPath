@@ -173,7 +173,7 @@
 
     <!-- Screenshot and Copy Prevention Script -->
     <script>
-        // Prevent Print Screen and apply visual blur disruption
+        // Prevent Print Screen and apply visual blur disruption for phones as well
         document.addEventListener('keydown', function(e) {
             if (e.key === 'PrintScreen' || e.keyCode === 44) { // KeyCode for PrintScreen
                 e.preventDefault();
@@ -185,6 +185,16 @@
                     document.body.classList.remove('blurred');
                 }, 1000); // Blur for 1 second
             }
+        });
+
+        // Prevent screenshot-like behavior on touch devices
+        window.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            alert('Screenshots are not allowed!');
+            document.body.classList.add('blurred');
+            setTimeout(function() {
+                document.body.classList.remove('blurred');
+            }, 1000);
         });
 
         // Disable right-click
