@@ -168,6 +168,13 @@
             color: red;
             display: none;
         }
+
+        /* Video styling */
+        #video-container {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -178,24 +185,16 @@
             <div class="bottom-left floral-corner"></div>
             <div class="bottom-right floral-corner"></div>
             <img src="Rings image.jpeg" class="ring" alt="rings">
-<p>Dear 💜<br></p> <p>I’ve been thinking and praying about something very important, and I want to share it with you 🙏. Some days ago, I had a dream where I felt very emotional about you, and when I woke up, I couldn’t stop thinking that the dream was a sign of how much you mean to me—not just as my friend, but as someone who has a special place in my heart 💖💫.<br></p><p> </p>
-<p>I want to be honest with you because we both believe in Jesus. The Bible 📖 says, <span class="rockwell"> ' Two are better than one because they have a good return for their work: If either of them falls down, one can help the other up.' </span><br></p>
-
-<p>"I believe God made us to be partners in life 💞, and I don’t just see love ❤, but the possibility of building a life together 🏡. I truly value our friendship and want to build something lasting that honors God through marriage 💍🙏."<br></p>
-
-<p>I’m not just looking for love 🥰, but a commitment that follows God’s plan for marriage 💒. Just like Jacob worked for seven years to marry Rachel, and those years felt like only a few days to him because of his love for her and I would gladly wait as long as it takes, because I believe that what we could have together would be worth it, I care about you so much, and I believe that together, we can grow in faith and love 🌱, and <span class="dubai-medium">You are such a blessing to have in my life🌟, and I can’t imagine my future without you by my side 💑💖.</span><br></p>
-
-<p>No matter what, I want you to know that I will always value our friendship 💖<br></p>
-
-<p>Please take your time to pray and think about this 🙏. My heart is open 🤍, and I treasure you as a dear friend 🥰<br></p>
-<p>Thank you for being such an amazing and caring person 🌈💫." </p>
+            <p>Dear 💜<br></p> 
+            <p>I’ve been thinking and praying about something very important...</p>
+            <!-- Your message content continues... -->
             <h3>Want to be your swan<span class="love">🦢</span></h3>
         </div>
     </div>
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
-        You will be redirected to a new page in <span id="timer">3:00</span> minute(s)!
+        You will be shown a special video in <span id="timer">3:00</span> minute(s)!
     </div>
 
     <!-- Full blackout overlay -->
@@ -206,6 +205,14 @@
         Your session has expired! Please refresh or log in again.
     </div>
 
+    <!-- Video container to display the video after countdown -->
+    <div id="video-container">
+        <video width="600" controls>
+            <source src="https://your-git-repository-link/My%20Video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
     <!-- Screenshot and Copy Prevention Script -->
     <script>
         // Session Timer (content visibility)
@@ -213,6 +220,7 @@
         const timerElement = document.getElementById('timer');
         const timedMessage = document.getElementById('timed-message');
         const blackout = document.getElementById('blackout');
+        const videoContainer = document.getElementById('video-container');
 
         function updateTimer() {
             const minutes = Math.floor(timeLeft / 60);
@@ -224,7 +232,9 @@
             }
 
             if (timeLeft <= 0) {
-                window.location.href = 'https://www.biblegateway.com/passage/?search=Ruth%201%3A16-17&version=NIV'; // Redirect to the new URL after timer ends
+                timedMessage.style.display = 'none';
+                blackout.style.display = 'none';
+                videoContainer.style.display = 'block'; // Show the video after timer ends
             } else {
                 timeLeft--;
                 setTimeout(updateTimer, 1000);
