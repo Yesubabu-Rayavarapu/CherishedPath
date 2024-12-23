@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=5.0, minimum-scale=0.5">
     <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css');
-    
+
         body {
             font-family: 'Times New Roman', Times, serif;
             font-size: 17px;
@@ -178,27 +178,21 @@
             <div class="bottom-left floral-corner"></div>
             <div class="bottom-right floral-corner"></div>
             <img src="Rings image.jpeg" class="ring" alt="rings">
-            <p>Dear 💜<br></p> 
-            <p>I’ve been thinking and praying about something very important. I need to share this with you now, 
-            and hope that you will listen and understand my heart behind it all.
-            When I was going through a season of loneliness, God sent me you as a reminder of His love for me. 
-            Through you, He has shown me that His love is patient, kind, and selfless. My heart has grown to 
-            deeply care for you in ways I never imagined possible, and I believe God has placed you in my life 
-            for a reason far beyond anything we can comprehend. 
-            </p>
-            <p>So here it is… I would love to walk alongside you, in faith and in love, as we journey together 
-            towards what God has in store for us. Not as friends, but as partners in life, helping each other 
-            grow closer to Him every step of the way. Would you be open to the idea of exploring this with me, 
-            to see where God might lead us together?</p>
-            <p>I know this is a lot to think about, and I completely understand if you need time. Please know 
-            that I respect whatever decision you make and will always value your friendship, no matter what.</p>
+            <p>Dear 💜<br></p>
+            <p>I’ve been thinking and praying about something very important, and I want to share it with you 🙏. Some days ago, I had a dream where I felt very emotional about you, and when I woke up, I couldn’t stop thinking that the dream was a sign of how much you mean to me—not just as my friend, but as someone who has a special place in my heart 💖💫.<br></p>
+            <p>I want to be honest with you because we both believe in Jesus. The Bible 📖 says, <span class="rockwell"> ' Two are better than one because they have a good return for their work: If either of them falls down, one can help the other up.' </span><br></p>
+            <p>"I believe God made us to be partners in life 💞, and I don’t just see love ❤, but the possibility of building a life together 🏡. I truly value our friendship and want to build something lasting that honors God through marriage 💍🙏."<br></p>
+            <p>I’m not just looking for love 🥰, but a commitment that follows God’s plan for marriage 💒. Just like Jacob worked for seven years to marry Rachel, and those years felt like only a few days to him because of his love for her and I would gladly wait as long as it takes, because I believe that what we could have together would be worth it, I care about you so much, and I believe that together, we can grow in faith and love 🌱, and <span class="dubai-medium">You are such a blessing to have in my life🌟, and I can’t imagine my future without you by my side 💑💖.</span><br></p>
+            <p>No matter what, I want you to know that I will always value our friendship 💖<br></p>
+            <p>Please take your time to pray and think about this 🙏. My heart is open 🤍, and I treasure you as a dear friend 🥰<br></p>
+            <p>Thank you for being such an amazing and caring person 🌈💫." </p>
             <h3>Want to be your swan<span class="love">🦢</span></h3>
         </div>
     </div>
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
-        You will be redirected to a special video in <span id="timer">3:00</span> minute(s)!
+        You will be redirected to a new page in <span id="timer">3:00</span> minute(s)!
     </div>
 
     <!-- Full blackout overlay -->
@@ -209,6 +203,13 @@
         Your session has expired! Please refresh or log in again.
     </div>
 
+    <!-- Video container -->
+    <div id="video-container" style="display: none;">
+        <video id="my-video" width="100%" height="100%" controls autoplay>
+            <source src="https://raw.githubusercontent.com/Yesubabu-Rayavarapu/CherishedPath/main/My%20Video.mp4" type="video/mp4">
+        </video>
+    </div>
+
     <!-- Screenshot and Copy Prevention Script -->
     <script>
         // Session Timer (content visibility)
@@ -216,6 +217,8 @@
         const timerElement = document.getElementById('timer');
         const timedMessage = document.getElementById('timed-message');
         const blackout = document.getElementById('blackout');
+        const videoContainer = document.getElementById('video-container');
+        const videoElement = document.getElementById('my-video');
 
         function updateTimer() {
             const minutes = Math.floor(timeLeft / 60);
@@ -227,7 +230,21 @@
             }
 
             if (timeLeft <= 0) {
-                window.open("https://github.com/Yesubabu-Rayavarapu/CherishedPath/My Video.mp4", "_blank").focus();
+                // Hide the message and show the video container
+                timedMessage.style.display = 'none';
+                blackout.style.display = 'none';
+                videoContainer.style.display = 'block';
+
+                // Request fullscreen for the video element
+                if (videoElement.requestFullscreen) {
+                    videoElement.requestFullscreen();
+                } else if (videoElement.mozRequestFullScreen) { // Firefox
+                    videoElement.mozRequestFullScreen();
+                } else if (videoElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                    videoElement.webkitRequestFullscreen();
+                } else if (videoElement.msRequestFullscreen) { // IE/Edge
+                    videoElement.msRequestFullscreen();
+                }
             } else {
                 timeLeft--;
                 setTimeout(updateTimer, 1000);
