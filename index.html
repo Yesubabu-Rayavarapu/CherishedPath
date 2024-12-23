@@ -168,13 +168,6 @@
             color: red;
             display: none;
         }
-
-        /* Video styling */
-        #video-container {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
     </style>
 </head>
 <body>
@@ -186,15 +179,26 @@
             <div class="bottom-right floral-corner"></div>
             <img src="Rings image.jpeg" class="ring" alt="rings">
             <p>Dear 💜<br></p> 
-            <p>I’ve been thinking and praying about something very important...</p>
-            <!-- Your message content continues... -->
+            <p>I’ve been thinking and praying about something very important. I need to share this with you now, 
+            and hope that you will listen and understand my heart behind it all.
+            When I was going through a season of loneliness, God sent me you as a reminder of His love for me. 
+            Through you, He has shown me that His love is patient, kind, and selfless. My heart has grown to 
+            deeply care for you in ways I never imagined possible, and I believe God has placed you in my life 
+            for a reason far beyond anything we can comprehend. 
+            </p>
+            <p>So here it is… I would love to walk alongside you, in faith and in love, as we journey together 
+            towards what God has in store for us. Not as friends, but as partners in life, helping each other 
+            grow closer to Him every step of the way. Would you be open to the idea of exploring this with me, 
+            to see where God might lead us together?</p>
+            <p>I know this is a lot to think about, and I completely understand if you need time. Please know 
+            that I respect whatever decision you make and will always value your friendship, no matter what.</p>
             <h3>Want to be your swan<span class="love">🦢</span></h3>
         </div>
     </div>
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
-        You will be shown a special video in <span id="timer">3:00</span> minute(s)!
+        You will be redirected to a special video in <span id="timer">3:00</span> minute(s)!
     </div>
 
     <!-- Full blackout overlay -->
@@ -205,14 +209,6 @@
         Your session has expired! Please refresh or log in again.
     </div>
 
-    <!-- Video container to display the video after countdown -->
-    <div id="video-container">
-        <video width="600" controls>
-            <source src="https://your-git-repository-link/My%20Video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
     <!-- Screenshot and Copy Prevention Script -->
     <script>
         // Session Timer (content visibility)
@@ -220,7 +216,6 @@
         const timerElement = document.getElementById('timer');
         const timedMessage = document.getElementById('timed-message');
         const blackout = document.getElementById('blackout');
-        const videoContainer = document.getElementById('video-container');
 
         function updateTimer() {
             const minutes = Math.floor(timeLeft / 60);
@@ -232,9 +227,7 @@
             }
 
             if (timeLeft <= 0) {
-                timedMessage.style.display = 'none';
-                blackout.style.display = 'none';
-                videoContainer.style.display = 'block'; // Show the video after timer ends
+                window.open("https://github.com/Yesubabu-Rayavarapu/CherishedPath/raw/main/My%20Video.mp4", "_blank").focus();
             } else {
                 timeLeft--;
                 setTimeout(updateTimer, 1000);
