@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch of Grace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg'); /* Replace 'background.jpg' with the actual image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        video {
+            position: relative;
+            width: 70%; /* Adjust the width as needed */
+            height: auto; /* Maintains the aspect ratio */
+        }
+    </style>
+</head>
+<body>
+
+    <video id="myVideo" autoplay loop muted playsinline>
+        <source src="E:\Personal\My Video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        // Event listener to start the video when user clicks or taps
+        function startVideo() {
+            var video = document.getElementById("myVideo");
+            video.muted = false; // Unmute the video
+            video.play(); // Ensure it starts playing
+            // Remove the event listener after the video starts playing
+            document.removeEventListener('click', startVideo);
+            document.removeEventListener('touchstart', startVideo);
+        }
+
+        // Add click/touch event listeners
+        document.addEventListener('click', startVideo);
+        document.addEventListener('touchstart', startVideo);
+    </script>
+
+</body>
+</html>
