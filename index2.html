@@ -49,9 +49,9 @@
             document.removeEventListener('touchstart', startVideo);
         }
 
-        // Add click/touch event listeners
-        document.addEventListener('click', startVideo);
-        document.addEventListener('touchstart', startVideo);
+        // Add both click and touch event listeners
+        document.addEventListener('click', startVideo);  // For desktop
+        document.addEventListener('touchstart', startVideo);  // For mobile
     </script>
 
 </body>
