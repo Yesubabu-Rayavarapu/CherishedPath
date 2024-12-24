@@ -42,16 +42,17 @@
         // Event listener to start the video when user clicks or taps
         function startVideo() {
             var video = document.getElementById("myVideo");
-            video.muted = false; // Unmute the video
+            // Unmute the video for audio to play
+            video.muted = false; 
             video.play(); // Ensure it starts playing
             // Remove the event listener after the video starts playing
             document.removeEventListener('click', startVideo);
             document.removeEventListener('touchstart', startVideo);
         }
 
-        // Add both click and touch event listeners
-        document.addEventListener('click', startVideo);  // For desktop
-        document.addEventListener('touchstart', startVideo);  // For mobile
+        // Ensure the video starts only when user interacts (click or touch)
+        document.addEventListener('click', startVideo); // For desktop and touch devices
+        document.addEventListener('touchstart', startVideo); // For touch on mobile
     </script>
 
 </body>
