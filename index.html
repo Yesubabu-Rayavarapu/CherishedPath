@@ -192,7 +192,7 @@
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
-        You will be redirected to a new page in <span id="timer">3:00</span> minute(s)!
+        You will be redirected to a new page in <span id="timer">0:15</span> second(s)!
     </div>
 
     <!-- Full blackout overlay -->
@@ -206,7 +206,7 @@
     <!-- Screenshot and Copy Prevention Script -->
     <script>
         // Session Timer (content visibility)
-        let timeLeft = 180; // 3 minutes in seconds
+        let timeLeft = 15; // 15 seconds
         const timerElement = document.getElementById('timer');
         const timedMessage = document.getElementById('timed-message');
         const blackout = document.getElementById('blackout');
@@ -223,18 +223,25 @@
             if (timeLeft <= 0) {
                 // Hide the message and redirect to index2.html in the Git repository
                 timedMessage.style.display = 'none';
-                blackout.style.display = 'none';
-
-                // Redirect to index2.html in the Git repository
-                window.location.href = "https://yesubabu-rayavarapu.github.io/CherishedPath/index2.html";
-            } else {
-                timeLeft--;
-                setTimeout(updateTimer, 1000);
+                blackout.style.display = 'block';
+                setTimeout(function() {
+                    window.location.href = 'index2.html';
+                }, 1000); // delay the redirect by 1 second for smoother transition
             }
+
+            timeLeft--;
         }
 
-        // Start the timer
-        updateTimer();
+        setInterval(updateTimer, 1000); // Countdown every second
+
+        // Prevent screenshots
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                document.body.classList.add('blurred');
+                document.getElementById('screenshot-blocker').style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>
