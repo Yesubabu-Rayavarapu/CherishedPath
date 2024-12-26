@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg');
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg'); /* Replace 'background.jpg' with the actual image path */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -26,8 +26,8 @@
 
         video {
             position: relative;
-            width: 70%;
-            height: auto;
+            width: 70%; /* Adjust the width as needed */
+            height: auto; /* Maintains the aspect ratio */
         }
     </style>
 </head>
@@ -41,36 +41,25 @@
     <script>
         var video = document.getElementById("myVideo");
 
-        // Check if the video is loaded and ready to play
-        video.addEventListener('canplaythrough', function() {
-            console.log("Video is ready to play!");
-        });
+        // Start the video with sound when user interacts (click/touch)
+        function startVideo(event) {
+            // Make sure video is not muted and play it
+            video.muted = false;
+            video.play().catch(function(error) {
+                console.log("Error playing video:", error); // Catch any errors
+            });
 
-        // Function to handle user interaction and play the video
-        function startVideo() {
-            // Fullscreen mode (optional for mobile)
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) { // For Firefox
-                video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) { // For Chrome and Safari
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // For IE/Edge
-                video.msRequestFullscreen();
-            }
+            // Prevent full-screen behavior when clicking or touching
+            event.preventDefault();
 
-            // Play the video with a small delay
-            setTimeout(function() {
-                video.muted = false;  // Unmute the video
-                video.play().catch(function(error) {
-                    console.log("Error playing video:", error);
-                });
-            }, 200); // Adding a 200ms delay before playing
+            // Remove event listeners after user interaction
+            document.removeEventListener('click', startVideo);
+            document.removeEventListener('touchstart', startVideo);
         }
 
-        // Add click and touch event listeners
-        document.addEventListener('click', startVideo);
-        document.addEventListener('touchstart', startVideo);
+        // Add click and touchstart event listeners
+        document.addEventListener('click', startVideo); // For desktop browsers
+        document.addEventListener('touchstart', startVideo); // For mobile devices
 
     </script>
 
