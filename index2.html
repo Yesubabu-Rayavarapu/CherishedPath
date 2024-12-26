@@ -43,16 +43,18 @@
 
         // Start the video with sound when user interacts (click/touch)
         function startVideo(event) {
-            // Make sure video is not muted and play it
+            // Ensure video is not muted and play it
             video.muted = false;
-            video.play().catch(function(error) {
+
+            // Attempt to play the video
+            video.play().then(function() {
+                console.log('Video playing with sound');
+            }).catch(function(error) {
                 console.log("Error playing video:", error); // Catch any errors
             });
 
-            // Prevent full-screen mode only
-            if (event.target === video) {
-                event.preventDefault(); // Prevent full-screen mode if clicked on video
-            }
+            // Prevent the default behavior (e.g., full screen)
+            event.preventDefault();
 
             // Remove event listeners after user interaction
             document.removeEventListener('click', startVideo);
@@ -67,4 +69,3 @@
 
 </body>
 </html>
-v
