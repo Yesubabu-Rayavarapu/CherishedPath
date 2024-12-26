@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg');
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg'); /* Replace 'background.jpg' with the actual image path */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -28,52 +28,51 @@
             position: relative;
             width: 70%;
             height: auto;
+            display: none; /* Initially hide the video */
         }
 
-        /* Style for play button */
-        #playButton {
+        .play-button {
             position: absolute;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 20px;
             padding: 10px 20px;
+            font-size: 20px;
+            background-color: #ff69b4;
+            color: white;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
-            z-index: 10;
         }
 
-        #playButton:focus {
-            outline: none;
+        .play-button:hover {
+            background-color: #e6007f;
         }
     </style>
 </head>
 <body>
 
+    <!-- Play button -->
+    <button class="play-button" id="playButton">Click to Play Video</button>
+
+    <!-- Video -->
     <video id="myVideo" muted playsinline>
         <source src="My Video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!-- Play button with direct message -->
-    <button id="playButton">Click to Play Video</button>
-
     <script>
         var video = document.getElementById("myVideo");
         var playButton = document.getElementById("playButton");
 
-        // Function to start video when play button is clicked
+        // Function to start video and make it visible
         function startVideo() {
-            // Unmute and play the video
-            video.muted = false;
+            video.style.display = 'block'; // Show the video
+            playButton.style.display = 'none'; // Hide the play button
+            video.muted = false; // Unmute the video
             video.play().catch(function(error) {
                 console.log("Error playing video:", error); // Catch any errors
             });
-
-            // Hide the play button after interaction
-            playButton.style.display = "none";
         }
 
-        // Attach the click event listener to the play button
+        // Add click event listener to the play button
         playButton.addEventListener('click', startVideo);
     </script>
 
