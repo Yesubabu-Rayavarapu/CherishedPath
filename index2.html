@@ -49,8 +49,10 @@
                 console.log("Error playing video:", error); // Catch any errors
             });
 
-            // Prevent full-screen behavior when clicking or touching
-            event.preventDefault();
+            // Prevent full-screen mode only
+            if (event.target === video) {
+                event.preventDefault(); // Prevent full-screen mode if clicked on video
+            }
 
             // Remove event listeners after user interaction
             document.removeEventListener('click', startVideo);
@@ -65,3 +67,4 @@
 
 </body>
 </html>
+v
