@@ -26,54 +26,41 @@
 
         video {
             position: relative;
-            width: 70%;
-            height: auto;
-            display: none; /* Initially hide the video */
+            width: 70%; /* Adjust the width as needed */
+            height: auto; /* Maintains the aspect ratio */
         }
 
-        .play-button {
-            position: absolute;
-            padding: 10px 20px;
-            font-size: 20px;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .play-button:hover {
-            background-color: #e6007f;
+        .video-container {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Play button -->
-    <button class="play-button" id="playButton">Click to Play Video</button>
+    <div class="video-container" id="video-container">
+        <video id="myVideo" muted loop playsinline>
+            <source src="My Video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
-    <!-- Video -->
-    <video id="myVideo" muted playsinline>
-        <source src="My Video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <button id="playButton">Click to Play Video</button>
 
     <script>
-        var video = document.getElementById("myVideo");
         var playButton = document.getElementById("playButton");
+        var videoContainer = document.getElementById("video-container");
+        var video = document.getElementById("myVideo");
 
-        // Function to start video and make it visible
-        function startVideo() {
-            video.style.display = 'block'; // Show the video
-            playButton.style.display = 'none'; // Hide the play button
-            video.muted = false; // Unmute the video
-            video.play().catch(function(error) {
-                console.log("Error playing video:", error); // Catch any errors
-            });
-        }
+        // Function to start the video and show it after clicking the button
+        playButton.addEventListener("click", function() {
+            // Hide the button and show the video container
+            playButton.style.display = "none";
+            videoContainer.style.display = "block";
 
-        // Add click event listener to the play button
-        playButton.addEventListener('click', startVideo);
+            // Play the video with sound
+            video.muted = false;
+            video.play();
+        });
     </script>
 
 </body>
