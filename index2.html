@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg'); /* Replace 'background.jpg' with the actual image path */
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -26,8 +26,24 @@
 
         video {
             position: relative;
-            width: 70%; /* Adjust the width as needed */
-            height: auto; /* Maintains the aspect ratio */
+            width: 70%;
+            height: auto;
+        }
+
+        /* Style for play button */
+        #playButton {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #playButton:focus {
+            outline: none;
         }
     </style>
 </head>
@@ -38,44 +54,27 @@
         Your browser does not support the video tag.
     </video>
 
+    <!-- Play button that the user clicks -->
+    <button id="playButton">Play Video</button>
+
     <script>
         var video = document.getElementById("myVideo");
+        var playButton = document.getElementById("playButton");
 
-        // Create an AudioContext for controlling audio playback
-        var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        var sourceNode;
-        var analyserNode;
-
-        // Start the video with sound when user interacts (click/touch)
-        function startVideo(event) {
-            // Make sure video is not muted and play it
+        // Function to start video when play button is clicked
+        function startVideo() {
+            // Unmute and play the video
             video.muted = false;
-
-            // Play the video and check for errors
-            video.play().then(function() {
-                console.log('Video playing with sound');
-            }).catch(function(error) {
+            video.play().catch(function(error) {
                 console.log("Error playing video:", error); // Catch any errors
             });
 
-            // Set up Web Audio API for controlling sound
-            sourceNode = audioContext.createMediaElementSource(video);
-            analyserNode = audioContext.createAnalyser();
-            sourceNode.connect(analyserNode);
-            analyserNode.connect(audioContext.destination);
-
-            // Prevent the default behavior (e.g., full screen)
-            event.preventDefault();
-
-            // Remove event listeners after user interaction
-            document.removeEventListener('click', startVideo);
-            document.removeEventListener('touchstart', startVideo);
+            // Hide the play button after interaction
+            playButton.style.display = "none";
         }
 
-        // Add click and touchstart event listeners
-        document.addEventListener('click', startVideo); // For desktop browsers
-        document.addEventListener('touchstart', startVideo); // For mobile devices
-
+        // Attach the click event listener to the play button
+        playButton.addEventListener('click', startVideo);
     </script>
 
 </body>
