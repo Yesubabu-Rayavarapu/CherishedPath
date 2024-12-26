@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg'); /* Replace 'background.jpg' with the actual image path */
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yOTYtbmluZy0wOC5qcGc.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -26,8 +26,8 @@
 
         video {
             position: relative;
-            width: 70%; /* Adjust the width as needed */
-            height: auto; /* Maintains the aspect ratio */
+            width: 70%;
+            height: auto;
         }
     </style>
 </head>
@@ -41,23 +41,23 @@
     <script>
         var video = document.getElementById("myVideo");
 
-        // Start the video with sound when user interacts (click/touch)
         function startVideo() {
-            // Make sure video is not muted and play it
             video.muted = false;
+
+            // Ensure the video is loaded and ready
             video.play().catch(function(error) {
-                console.log("Error playing video:", error); // Catch any errors
+                console.log("Error playing video:", error);
             });
 
-            // Remove event listeners after user interaction
             document.removeEventListener('click', startVideo);
             document.removeEventListener('touchstart', startVideo);
+            document.removeEventListener('touchend', startVideo);
         }
 
-        // Add click and touchstart event listeners
-        document.addEventListener('click', startVideo); // For desktop browsers
-        document.addEventListener('touchstart', startVideo); // For mobile devices
-
+        // Event listeners for interaction
+        document.addEventListener('click', startVideo);       // For desktop
+        document.addEventListener('touchstart', startVideo);  // For mobile tap
+        document.addEventListener('touchend', startVideo);    // Additional mobile touch end
     </script>
 
 </body>
