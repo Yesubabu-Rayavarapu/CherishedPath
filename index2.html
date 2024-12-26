@@ -41,17 +41,28 @@
     <script>
         var video = document.getElementById("myVideo");
 
+        // Create an AudioContext for controlling audio playback
+        var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        var sourceNode;
+        var analyserNode;
+
         // Start the video with sound when user interacts (click/touch)
         function startVideo(event) {
-            // Ensure video is not muted and play it
+            // Make sure video is not muted and play it
             video.muted = false;
 
-            // Attempt to play the video
+            // Play the video and check for errors
             video.play().then(function() {
                 console.log('Video playing with sound');
             }).catch(function(error) {
                 console.log("Error playing video:", error); // Catch any errors
             });
+
+            // Set up Web Audio API for controlling sound
+            sourceNode = audioContext.createMediaElementSource(video);
+            analyserNode = audioContext.createAnalyser();
+            sourceNode.connect(analyserNode);
+            analyserNode.connect(audioContext.destination);
 
             // Prevent the default behavior (e.g., full screen)
             event.preventDefault();
