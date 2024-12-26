@@ -41,23 +41,37 @@
     <script>
         var video = document.getElementById("myVideo");
 
+        // Check if the video is loaded and ready to play
+        video.addEventListener('canplaythrough', function() {
+            console.log("Video is ready to play!");
+        });
+
+        // Function to handle user interaction and play the video
         function startVideo() {
-            video.muted = false;
+            // Fullscreen mode (optional for mobile)
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // For Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // For Chrome and Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // For IE/Edge
+                video.msRequestFullscreen();
+            }
 
-            // Ensure the video is loaded and ready
-            video.play().catch(function(error) {
-                console.log("Error playing video:", error);
-            });
-
-            document.removeEventListener('click', startVideo);
-            document.removeEventListener('touchstart', startVideo);
-            document.removeEventListener('touchend', startVideo);
+            // Play the video with a small delay
+            setTimeout(function() {
+                video.muted = false;  // Unmute the video
+                video.play().catch(function(error) {
+                    console.log("Error playing video:", error);
+                });
+            }, 200); // Adding a 200ms delay before playing
         }
 
-        // Event listeners for interaction
-        document.addEventListener('click', startVideo);       // For desktop
-        document.addEventListener('touchstart', startVideo);  // For mobile tap
-        document.addEventListener('touchend', startVideo);    // Additional mobile touch end
+        // Add click and touch event listeners
+        document.addEventListener('click', startVideo);
+        document.addEventListener('touchstart', startVideo);
+
     </script>
 
 </body>
