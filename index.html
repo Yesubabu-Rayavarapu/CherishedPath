@@ -187,7 +187,7 @@
 
         .greeting {
             position: absolute;
-            bottom: 10px;
+            bottom: -20px;
             right: 10px;
             color: #0c62a6;
             font-size: 18px;
@@ -222,7 +222,7 @@
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
-        You will be redirected to a new page in <span id="timer">0:15</span> second(s)!
+        You will be redirected to a new page in <span id="timer">2:30</span> second(s)!
     </div>
 
     <!-- Full blackout overlay -->
@@ -266,6 +266,8 @@
                         <p>${weather.charAt(0).toUpperCase() + weather.slice(1)}</p>
                         <p>${date}</p>
                     `;
+
+                    displayGreeting();
                 } else {
                     console.error("Error fetching weather data:", data.message);
                     document.getElementById("weather-info").textContent = "Error fetching weather data.";
@@ -281,13 +283,13 @@
             let greeting = "";
 
             if (hours >= 5 && hours < 12) {
-                greeting = "Good Morning Praveena!";
+                greeting = "Good Morning Pravvena!";
             } else if (hours >= 12 && hours < 17) {
-                greeting = "Good Afternoon Praveena!";
+                greeting = "Good Afternoon Pravvena!";
             } else if (hours >= 17 && hours < 21) {
-                greeting = "Good Evening Praveena!";
+                greeting = "Good Evening Pravvena!";
             } else {
-                greeting = "Good Night Praveena!";
+                greeting = "Good Night Pravvena!";
             }
 
             document.getElementById("greeting-message").textContent = greeting;
@@ -295,14 +297,13 @@
 
         function init() {
             fetchWeather();
-            displayGreeting();
             setInterval(fetchWeather, 600000); // Refresh weather data every 10 minutes
         }
 
         init();
 
         // Session Timer (content visibility)
-        let timeLeft = 15; // 15 seconds
+        let timeLeft = 150; // 2 minutes and 30 seconds
         const timerElement = document.getElementById('timer');
         const timedMessage = document.getElementById('timed-message');
         const blackout = document.getElementById('blackout');
