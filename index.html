@@ -24,7 +24,7 @@
 
         .box {
             background: #EA1E63;
-            padding: 60px 60px;
+            padding: 30px 30px; /* Reduced height */
             color: #fff;
             width: 50%;
             text-align: center;
@@ -175,10 +175,12 @@
             right: 10px;
             background-color: #0c62a6;
             color: #fff;
-            padding: 15px 20px;
+            padding: 10px 20px; /* Adjusted padding */
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 200px;
+            height: auto;
         }
 
         .weather-container h3 {
@@ -187,10 +189,10 @@
 
         .greeting {
             position: absolute;
-            bottom: -20px;
+            top: 40px; /* Adjusted to appear under the date */
             right: 10px;
             color: #0c62a6;
-            font-size: 18px;
+            font-size: 16px; /* Adjusted font size */
         }
     </style>
 </head>
@@ -217,8 +219,8 @@
     <div class="weather-container" id="weather-container">
         <h3>Loading Weather...</h3>
         <p id="weather-info">Please wait</p>
+        <div id="greeting-message" class="greeting"></div>
     </div>
-    <div class="greeting" id="greeting-message"></div>
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
@@ -283,13 +285,13 @@
             let greeting = "";
 
             if (hours >= 5 && hours < 12) {
-                greeting = "Good Morning Pravvena!";
+                greeting = "Good Morning!";
             } else if (hours >= 12 && hours < 17) {
-                greeting = "Good Afternoon Pravvena!";
+                greeting = "Good Afternoon!";
             } else if (hours >= 17 && hours < 21) {
-                greeting = "Good Evening Pravvena!";
+                greeting = "Good Evening!";
             } else {
-                greeting = "Good Night Pravvena!";
+                greeting = "Good Night!";
             }
 
             document.getElementById("greeting-message").textContent = greeting;
