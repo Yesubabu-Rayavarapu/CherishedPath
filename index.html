@@ -192,7 +192,7 @@
 
     <!-- Timed content visibility message -->
     <div class="timed-message" id="timed-message">
-        You will be redirected to a new page in <span id="timer">0:15</span> second(s)!
+        You will be redirected to a new page in <span id="timer">2:30</span> second(s)!
     </div>
 
     <!-- Full blackout overlay -->
@@ -206,7 +206,7 @@
     <!-- Screenshot and Copy Prevention Script -->
     <script>
         // Session Timer (content visibility)
-        let timeLeft = 15; // 15 seconds
+        let timeLeft = 150; // 2 minutes 30 seconds
         const timerElement = document.getElementById('timer');
         const timedMessage = document.getElementById('timed-message');
         const blackout = document.getElementById('blackout');
@@ -234,13 +234,17 @@
 
         setInterval(updateTimer, 1000); // Countdown every second
 
-        // Prevent screenshots
-        document.addEventListener('keydown', function(e) {
+        // Block screenshots (detect PrtSc or Ctrl+PrtSc)
+        document.addEventListener('keyup', (e) => {
             if (e.key === 'PrintScreen') {
-                e.preventDefault();
-                document.body.classList.add('blurred');
-                document.getElementById('screenshot-blocker').style.display = 'block';
+                document.querySelector('.screenshot-blocker').style.display = 'block';
             }
+        });
+
+        // Block copy action
+        document.addEventListener('copy', (e) => {
+            e.preventDefault();
+            alert('Copying is disabled on this page.');
         });
     </script>
 </body>
